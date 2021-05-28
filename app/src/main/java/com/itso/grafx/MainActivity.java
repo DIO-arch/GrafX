@@ -14,15 +14,23 @@ import com.jjoe64.graphview.series.BarGraphSeries;
 import com.jjoe64.graphview.series.DataPoint;
 
 import java.util.LinkedList;
+import java.util.Random;
+
 
 public class MainActivity extends AppCompatActivity {
     public LinkedList<String> stringList;
     ListView lv;
-    Intent i = getIntent();
-    int _id = i.getExtras().getInt("pos_or_id");
+    //Intent i = getIntent();
+    //int _id = i.getExtras().getInt("pos_or_id");
     double start, end,step, ymax, ymin;
     private static MainActivity instance;
     GraphView gv;
+    //Dal dal = new Dal(MainActivity.this);
+    //int[] n = dal.valueToInt(dal.getValue(_id));
+    int i = 0;
+    int range1 = new Random().nextInt(19) + 1;
+    int[] n = new int[range1];
+    n = RandomTesting(int range1);
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -45,13 +53,12 @@ public class MainActivity extends AppCompatActivity {
         gv.getViewport().setMinY(ymin);
         gv.getViewport().setMaxY(ymax);
 //----------------
-        BarGraphSeries<DataPoint> series = new BarGraphSeries<>(new DataPoint[] {
-                new DataPoint(0, -1),
-                new DataPoint(1, 5),
-                new DataPoint(2, 3),
-                new DataPoint(3, 2),
-                new DataPoint(4, 6)
-        });
+        DataPoint[] dp = new DataPoint[n.length];
+        int s;
+        for (s = 0; s < dp.length; s++){
+            dp[s]= new DataPoint(s + 1, n[s]);
+        }
+        BarGraphSeries<DataPoint> series = new BarGraphSeries<>(dp);
         gv.addSeries(series);
 // styling
         series.setValueDependentColor(new ValueDependentColor<DataPoint>() {
@@ -65,6 +72,23 @@ public class MainActivity extends AppCompatActivity {
         series.setDrawValuesOnTop(true);
         series.setValuesOnTopColor(Color.RED);
 //series.setValuesOnTopSize(50);
-
+    }
+    public int[] IntToInt(int[] n){
+        int[] temp = new int[n.length];
+        int s;
+        for(s=0; s < n.length; s++){
+            temp[s] = n[s];
+        }
+        return temp;
+    }
+    public int[] RandomTesting(int range1){
+        Random r = new Random();
+        int range2;
+        int[] n = new int[range1];
+        for (i = 0; i < range1; i++) {
+            range2 = r.nextInt(256);
+            n[i] = range2;
+        }
+        return n;
     }
 }

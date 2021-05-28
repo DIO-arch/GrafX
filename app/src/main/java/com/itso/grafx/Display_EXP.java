@@ -35,7 +35,7 @@ public class Display_EXP extends Activity {
         lvEXP.setOnItemClickListener(onItemClickListener);
     }
 
-    private AdapterView.OnItemClickListener onItemClickListener = new AdapterView.OnItemClickListener() {
+    private final AdapterView.OnItemClickListener onItemClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             Intent i = new Intent(Display_EXP.this, MainActivity.class);

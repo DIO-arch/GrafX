@@ -62,5 +62,14 @@ public class Dal extends SQLiteAssetHelper {
     public Context GetContext(){
         return this.context;
     }
-
+    public int[] valueToInt(String value){
+        String substring = value.toString().substring(1, value.length() - 2);
+        String[] separated = substring.split(",");
+        int i;
+        int[] n = new int[value.length() - 2];
+        for(i=0; i < value.length() - 2; i++){
+            n[i] = Integer.parseInt(separated[i]);
+        }
+        return n;
+    }
 }
