@@ -20,17 +20,18 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity {
     public LinkedList<String> stringList;
     ListView lv;
-    //Intent i = getIntent();
-    //int _id = i.getExtras().getInt("pos_or_id");
+    Intent i = getIntent();
+    int _id = 1;
+    //String st = i.getExtras().getString("pos_or_id"); //problem
     double start, end,step, ymax, ymin;
     private static MainActivity instance;
     GraphView gv;
-    //Dal dal = new Dal(MainActivity.this);
-    //int[] n = dal.valueToInt(dal.getValue(_id));
-    int i = 0;
-    int range1 = new Random().nextInt(19) + 1;
-    int[] n = new int[range1];
-    n = RandomTesting(int range1);
+    Dal dal = new Dal(MainActivity.this);
+    int[] n = dal.valueToInt(dal.getValue(_id));
+    //int i = 0;
+    //int range1 = new Random().nextInt(19) + 1;
+    //int[] n = new int[range1];
+    //n = RandomTesting(int range1);
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -39,11 +40,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         instance = this;
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
-        start= -10;//default settings
-        end= 10;
-        ymin=-10;
-        ymax=10;
-        step=0.1;
+        start = 1;
+        end = 20;
+        ymin = 0;
+        ymax = 256;
+        step = 1;
 
         gv = findViewById(R.id.gv_graph);
         gv.getViewport().setYAxisBoundsManual(true);
@@ -81,14 +82,14 @@ public class MainActivity extends AppCompatActivity {
         }
         return temp;
     }
-    public int[] RandomTesting(int range1){
-        Random r = new Random();
-        int range2;
-        int[] n = new int[range1];
-        for (i = 0; i < range1; i++) {
-            range2 = r.nextInt(256);
-            n[i] = range2;
-        }
-        return n;
-    }
+    //public int[] RandomTesting(int range1){
+        //Random r = new Random();
+        //int range2;
+        //int[] n = new int[range1];
+        //for (i = 0; i < range1; i++) {
+          //  range2 = r.nextInt(256);
+            //n[i] = range2;
+        //}
+        //return n;
+    //}
 }
